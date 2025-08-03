@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solar Guatemala - Calculadora Solar Interactiva</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <meta name="description" content="Calculadora solar interactiva para comunidades guatemaltecas. Descubre el potencial de energía solar para tu hogar con nuestra herramienta culturalmente sensible." />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fsolarguat2939back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+</head>
+<body class="bg-background font-nunito">
+<!-- Animated Celestial Introduction -->
+<div id="celestial-intro" class="fixed inset-0 z-50 bg-gradient-to-b from-primary-900 via-primary-800 to-primary-700 flex items-center justify-center celestial-animation-long">
+    <div class="text-center">
+        <!-- Animated Stars Background -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="star absolute w-1 h-1 bg-white rounded-full opacity-80 animate-pulse" style="top: 20%; left: 15%;"></div>
+            <div class="star absolute w-1 h-1 bg-secondary-300 rounded-full opacity-60 animate-pulse" style="top: 30%; left: 80%; animation-delay: 0.5s;"></div>
+            <div class="star absolute w-1 h-1 bg-white rounded-full opacity-70 animate-pulse" style="top: 60%; left: 25%; animation-delay: 1s;"></div>
+            <div class="star absolute w-1 h-1 bg-accent-300 rounded-full opacity-50 animate-pulse" style="top: 70%; left: 70%; animation-delay: 1.5s;"></div>
+            <div class="star absolute w-1 h-1 bg-white rounded-full opacity-90 animate-pulse" style="top: 40%; left: 60%; animation-delay: 2s;"></div>
+        </div>
+        
+        <!-- ONG Europea Branding -->
+        <div class="relative z-10">
+            <div class="mb-8">
+                <svg class="w-24 h-24 mx-auto mb-4 text-secondary animate-pulse" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                </svg>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-4">ONG EUROPEA</h1>
+            <p class="text-xl text-secondary-200 mb-8">Energía Solar Educativa para Guatemala</p>
+            <div class="w-16 h-1 bg-secondary mx-auto rounded-full"></div>
+        </div>
+    </div>
+</div>
+
+    <!-- Navigation Header -->
+    <nav class="bg-surface shadow-cosmic sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="w-8 h-8 text-secondary mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                    </svg>
+                    <span class="text-xl font-bold text-primary">Solar Guatemala</span>
+                </div>
+
+                <!-- Language Selector -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <select id="language-selector" class="appearance-none bg-primary-50 border border-primary-200 rounded-lg px-4 py-2 pr-8 text-primary font-medium focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            <option value="es" selected>🇬🇹 Español</option>
+                            <option value="kiche">🏛️ K'iche'</option>
+                            <option value="en">🇺🇸 English</option>
+                        </select>
+                        <svg class="absolute right-2 top-3 w-4 h-4 text-primary pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+
+                    <!-- Navigation Menu -->
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="homepage_interactive_solar_calculator_hub.html" class="text-primary font-semibold border-b-2 border-secondary">Inicio</a>
+                        <a href="solar_calculator_advanced_estimation_tool.html" class="text-text-secondary hover:text-primary transition-colors">Calculadora</a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-primary-50">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="homepage_interactive_solar_calculator_hub.html" class="text-primary font-semibold py-2">Inicio</a>
+                    <a href="solar_calculator_advanced_estimation_tool.html" class="text-text-secondary hover:text-primary py-2">Calculadora</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+<!-- Hero Section with Interactive Calculator -->
+<section class="relative bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 py-20 overflow-hidden">
+    <!-- Constellation Background -->
+    <div class="absolute inset-0 opacity-20">
+        <svg class="w-full h-full" viewBox="0 0 800 600">
+            <defs>
+                <pattern id="constellation" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <circle cx="20" cy="20" r="1" fill="white" opacity="0.6"/>
+                    <circle cx="80" cy="40" r="1" fill="white" opacity="0.4"/>
+                    <circle cx="50" cy="70" r="1" fill="white" opacity="0.8"/>
+                    <line x1="20" y1="20" x2="80" y2="40" stroke="white" stroke-width="0.5" opacity="0.3"/>
+                    <line x1="80" y1="40" x2="50" y2="70" stroke="white" stroke-width="0.5" opacity="0.3"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#constellation)"/>
+        </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <!-- Hero Content -->
+            <div class="text-center lg:text-left">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                    Aprende sobre <span class="text-secondary">Energía Solar</span>
+                </h1>
+                <p class="text-xl text-primary-100 mb-8 leading-relaxed">
+                    Calculadora educativa simple para comunidades guatemaltecas. 
+                    Descubre cuánta energía solar necesita tu hogar.
+                </p>
+                
+                <!-- Simple Stats -->
+                <div class="grid grid-cols-1 place-items-center mb-8">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-secondary">100%</div>
+                        <div class="text-sm text-primary-200">Energía Limpia</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simple Solar Calculator Widget -->
+            <div class="calculator-interface bg-surface/95 backdrop-blur-sm">
+                <div class="text-center mb-6">
+                    <svg class="w-12 h-12 text-secondary mx-auto mb-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                    </svg>
+                    <h3 class="text-2xl font-bold text-primary mb-2">Calculadora Solar Simple</h3>
+                    <p class="text-text-secondary">Descubre tu consumo solar en 3 pasos</p>
+                </div>
+
+                <form id="simple-calculator" class="space-y-6">
+                    <!-- Step 1: Home Size -->
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-primary">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+                            </svg>
+                            ¿Cuántos cuartos tiene tu hogar?
+                        </label>
+                        <div class="grid grid-cols-4 gap-2">
+                            <button type="button" class="room-btn py-3 px-4 border-2 border-primary-200 rounded-lg text-primary font-medium hover:border-primary-500 hover:bg-primary-50 transition-colors" data-rooms="1-2">1-2</button>
+                            <button type="button" class="room-btn py-3 px-4 border-2 border-primary-200 rounded-lg text-primary font-medium hover:border-primary-500 hover:bg-primary-50 transition-colors" data-rooms="3-4">3-4</button>
+                            <button type="button" class="room-btn py-3 px-4 border-2 border-primary-200 rounded-lg text-primary font-medium hover:border-primary-500 hover:bg-primary-50 transition-colors" data-rooms="5-6">5-6</button>
+                            <button type="button" class="room-btn py-3 px-4 border-2 border-primary-200 rounded-lg text-primary font-medium hover:border-primary-500 hover:bg-primary-50 transition-colors" data-rooms="7+">7+</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Basic Appliances -->
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-primary">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                            ¿Qué aparatos usas más?
+                        </label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex items-center space-x-3 p-3 border border-border rounded-lg hover:bg-primary-50 cursor-pointer">
+                                <input type="checkbox" class="appliance-checkbox text-primary focus:ring-primary-500" value="lights" />
+                                <span class="text-sm">Luces</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-border rounded-lg hover:bg-primary-50 cursor-pointer">
+                                <input type="checkbox" class="appliance-checkbox text-primary focus:ring-primary-500" value="radio" />
+                                <span class="text-sm">Radio</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-border rounded-lg hover:bg-primary-50 cursor-pointer">
+                                <input type="checkbox" class="appliance-checkbox text-primary focus:ring-primary-500" value="phone" />
+                                <span class="text-sm">Cargar Teléfono</span>
+                            </label>
+                            <label class="flex items-center space-x-3 p-3 border border-border rounded-lg hover:bg-primary-50 cursor-pointer">
+                                <input type="checkbox" class="appliance-checkbox text-primary focus:ring-primary-500" value="fan" />
+                                <span class="text-sm">Ventilador</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Region -->
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-primary">
+                            <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            ¿En qué región vives?
+                        </label>
+                        <select id="region-select" class="w-full p-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            <option value>Selecciona tu región</option>
+                            <option value="guatemala">Guatemala Central</option>
+                            <option value="altiplano">Altiplano Occidental</option>
+                            <option value="costa">Costa Sur</option>
+                            <option value="oriente">Oriente</option>
+                            <option value="norte">Norte</option>
+                        </select>
+                    </div>
+
+                    <!-- Calculate Button -->
+                    <button type="submit" class="w-full btn-primary text-lg py-4 relative overflow-hidden group">
+                        <span class="relative z-10">Calcular Necesidades</span>
+                        <div class="absolute inset-0 bg-gradient-to-r from-secondary-600 to-secondary-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+                    </button>
+
+                    <!-- Simple Result Display -->
+                    <div id="simple-result" class="hidden bg-success/10 border border-success/20 rounded-lg p-4 text-center">
+                        <div class="text-success font-semibold mb-2">¡Información calculada!</div>
+                        <div class="text-sm text-text-secondary mb-3">Estimación básica para tu hogar:</div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <div class="font-semibold text-primary">Paneles sugeridos:</div>
+                                <div id="suggested-panels" class="text-secondary">-</div>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-primary">Energía diaria:</div>
+                                <div id="daily-energy" class="text-secondary">-</div>
+                            </div>
+                        </div>
+                        <a href="solar_calculator_advanced_estimation_tool.html" class="inline-block mt-3 text-primary hover:text-primary-700 font-medium text-sm">
+                            Aprender más sobre sistemas solares →
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Educational Resources Section -->
+<section class="py-16 bg-gradient-to-br from-primary-50 to-accent-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+                Aprende Sobre Energía Solar
+            </h2>
+            <p class="text-xl text-text-secondary max-w-3xl mx-auto">
+                Recursos educativos simples para entender la energía solar
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 justify-center">
+            <!-- Solar Basics -->
+            <div class="card group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 mx-auto">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-secondary/20 transition-colors">
+                        <svg class="w-8 h-8 text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">¿Qué es Energía Solar?</h3>
+                    <p class="text-text-secondary mb-4">
+                        Aprende cómo el sol puede generar electricidad para tu hogar de manera natural y limpia.
+                    </p>
+                    <a href="javascript:void(0)" onclick="showEducationalContent('basics')" class="inline-flex items-center text-primary hover:text-primary-700 font-medium">
+                        Aprender más
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="card group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 mx-auto">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 transition-colors">
+                        <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-3">¿Cómo Funciona?</h3>
+                    <p class="text-text-secondary mb-4">
+                        Descubre el proceso simple de convertir luz del sol en electricidad para tu familia.
+                    </p>
+                    <a href="javascript:void(0)" onclick="showEducationalContent('how-it-works')" class="inline-flex items-center text-primary hover:text-primary-700 font-medium">
+                        Ver proceso
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-16 bg-gradient-to-r from-primary-800 to-primary-900 relative overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+        <svg class="w-full h-full" viewBox="0 0 400 400">
+            <defs>
+                <pattern id="cta-pattern" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                    <circle cx="25" cy="25" r="2" fill="white" opacity="0.3"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#cta-pattern)"/>
+        </svg>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+            ¿Quieres Aprender Más Sobre Energía Solar?
+        </h2>
+        <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
+            Explora nuestra calculadora educativa o conecta con expertos locales para aprender más.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <!-- Botón de consulta eliminado por solicitud -->
+            <a href="solar_calculator_advanced_estimation_tool.html" class="bg-white text-primary font-semibold py-4 px-8 rounded-lg hover:bg-primary-50 transition-colors">
+                Usar Calculadora Educativa
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center justify-center text-center">
+                <!-- Brand -->
+                <div class="mb-6">
+                    <div class="flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-secondary mr-3" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                        </svg>
+                        <span class="text-2xl font-bold">Solar Guatemala</span>
+                    </div>
+                    <p class="text-primary-200 mb-4">
+                        Iluminando el futuro energético de Guatemala con respeto cultural y tecnología solar accesible.
+                    </p>
+                    <div class="text-sm text-primary-300 mb-6">
+                        Una iniciativa de ONG Europea
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-primary-700 mt-8 pt-8 text-center text-primary-300">
+                <p>&copy; 2025 Solar Guatemala - ONG Europea. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+    // Celestial intro animation
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            const intro = document.getElementById('celestial-intro');
+            intro.style.opacity = '0';
+            setTimeout(function() {
+                intro.style.display = 'none';
+            }, 800);
+        }, 3000);
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Simple calculator functionality
+    const simpleCalculator = document.getElementById('simple-calculator');
+    const roomButtons = document.querySelectorAll('.room-btn');
+    const simpleResult = document.getElementById('simple-result');
+    
+    let selectedRooms = '';
+    let selectedAppliances = [];
+    
+    // Room selection
+    roomButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            roomButtons.forEach(btn => btn.classList.remove('border-primary-500', 'bg-primary-50'));
+            this.classList.add('border-primary-500', 'bg-primary-50');
+            selectedRooms = this.dataset.rooms;
+        });
+    });
+    
+    // Appliance selection
+    const applianceCheckboxes = document.querySelectorAll('.appliance-checkbox');
+    applianceCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                selectedAppliances.push(this.value);
+            } else {
+                selectedAppliances = selectedAppliances.filter(item => item !== this.value);
+            }
+        });
+    });
+    
+    // Calculator submission
+    simpleCalculator.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const region = document.getElementById('region-select').value;
+        
+        if (selectedRooms && selectedAppliances.length > 0 && region) {
+            // Simple calculation logic
+            let panelsNeeded = 2;
+            let dailyEnergy = '3-5 kWh';
+            
+            if (selectedRooms === '5-6' || selectedRooms === '7+') {
+                panelsNeeded = 4;
+                dailyEnergy = '6-8 kWh';
+            }
+            
+            if (selectedAppliances.length > 2) {
+                panelsNeeded += 2;
+                dailyEnergy = '8-12 kWh';
+            }
+            
+            document.getElementById('suggested-panels').textContent = `${panelsNeeded} paneles`;
+            document.getElementById('daily-energy').textContent = dailyEnergy;
+            
+            simpleResult.classList.remove('hidden');
+            simpleResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            alert('Por favor completa todos los campos para obtener tu estimación.');
+        }
+    });
+
+    // Educational content function
+    function showEducationalContent(type) {
+        let content = '';
+        let title = '';
+        
+        switch(type) {
+            case 'basics':
+                title = '¿Qué es la Energía Solar?';
+                content = `
+                    <div class="space-y-4 text-left">
+                        <p>La energía solar es electricidad que viene directamente del sol. Es como usar la luz del día para encender focos en tu casa.</p>
+                        <p><strong>Beneficios simples:</strong></p>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Es gratis después de la instalación</li>
+                            <li>No contamina el aire como otros tipos de energía</li>
+                            <li>Funciona donde hay sol</li>
+                            <li>Puede durar más de 20 años</li>
+                        </ul>
+                        <p>Para las comunidades indígenas, la energía solar respeta la naturaleza y puede traer luz a lugares donde no llega la electricidad tradicional.</p>
+                    </div>
+                `;
+                break;
+            case 'how-it-works':
+                title = '¿Cómo Funciona la Energía Solar?';
+                content = `
+                    <div class="space-y-4 text-left">
+                        <p><strong>Proceso simple en 4 pasos:</strong></p>
+                        <ol class="list-decimal list-inside space-y-3">
+                            <li><strong>El sol brilla</strong> sobre los paneles solares en tu techo</li>
+                            <li><strong>Los paneles capturan</strong> la luz y la convierten en electricidad</li>
+                            <li><strong>Un aparato especial</strong> (inversor) hace que la electricidad funcione para tu casa</li>
+                            <li><strong>Usas la electricidad</strong> para luces, radio, cargar teléfonos y más</li>
+                        </ol>
+                        <p class="bg-primary-50 p-4 rounded-lg">
+                            <strong>¿Qué pasa cuando no hay sol?</strong><br>
+                            Los sistemas pueden tener baterías para guardar energía para la noche, o estar conectados a la red eléctrica tradicional.
+                        </p>
+                    </div>
+                `;
+                break;
+        }
+        
+        // Show content in a simple alert for now
+        // In a full implementation, this would open a modal or navigate to a dedicated page
+        alert(title + '\n\n' + content.replace(/<[^>]*>/g, '\n').replace(/\n+/g, '\n'));
+    }
+
+    // Language selector functionality
+    document.getElementById('language-selector').addEventListener('change', function() {
+        const selectedLang = this.value;
+        // In a real implementation, this would change the page language
+        console.log('Language changed to:', selectedLang);
+    });
+</script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>>
+    <script>
+    // --- TRANSLATION & LANGUAGE PERSISTENCE LOGIC ---
+    const translations = {
+      es: {
+        brand: "Solar Guatemala",
+        nav_inicio: "Inicio",
+        nav_calculadora: "Calculadora",
+        hero_title: "Aprende sobre <span class=\"text-secondary\">Energía Solar</span>",
+        hero_desc: "Descubre cuánta energía solar necesita tu hogar.",
+        stat_clean: "Energía Limpia",
+        calc_title: "Calculadora Solar Simple",
+        calc_desc: "Calculadora",
+        step1: "¿Cuántos cuartos tiene tu hogar?",
+        step2: "¿Qué aparatos usas más?",
+        step3: "¿En qué región vives?",
+        rooms: ["1-2", "3-4", "5-6", "7+"],
+        appliances: ["Luces", "Radio", "Cargar Teléfono", "Ventilador"],
+        region_label: "Selecciona tu región",
+        region_opts: ["Guatemala Central", "Altiplano Occidental", "Costa Sur", "Oriente", "Norte"],
+        calc_btn: "Calcular Necesidades",
+        result_title: "¡Información calculada!",
+        result_desc: "Estimación básica para tu hogar:",
+        panels: "Paneles sugeridos:",
+        energy: "Energía diaria:",
+        more: "Aprender más sobre sistemas solares →",
+        edu_title: "Aprende Sobre Energía Solar",
+        edu_desc: "Recursos educativos simples para entender la energía solar",
+        basics_title: "¿Qué es Energía Solar?",
+        basics_desc: "Aprende cómo el sol puede generar electricidad para tu hogar de manera natural y limpia.",
+        basics_btn: "Aprender más",
+        how_title: "¿Cómo Funciona?",
+        how_desc: "Descubre el proceso simple de convertir luz del sol en electricidad para tu familia.",
+        how_btn: "Ver proceso",
+        cta_title: "¿Quieres Aprender Más Sobre Energía Solar?",
+        cta_desc: "Explora nuestra calculadora educativa o conecta con expertos locales para aprender más.",
+        cta_btn: "Usar Calculadora Educativa",
+        footer_brand: "Solar Guatemala",
+        footer_desc: "Iluminando el futuro energético de Guatemala con respeto cultural y tecnología solar accesible.",
+        footer_ong: "Una iniciativa de ONG Europea",
+        footer_rights: "&copy; 2025 Solar Guatemala - ONG Europea. Todos los derechos reservados."
+      },
+      en: {
+        brand: "Solar Guatemala",
+        nav_inicio: "Home",
+        nav_calculadora: "Calculator",
+        hero_title: "Learn about <span class=\"text-secondary\">Solar Energy</span>",
+        hero_desc: "Discover how much solar energy your home needs.",
+        stat_clean: "Clean Energy",
+        calc_title: "Simple Solar Calculator",
+        calc_desc: "Calculator  ",
+        step1: "How many rooms does your home have?",
+        step2: "Which appliances do you use most?",
+        step3: "Which region do you live in?",
+        rooms: ["1-2", "3-4", "5-6", "7+"],
+        appliances: ["Lights", "Radio", "Charge Phone", "Fan"],
+        region_label: "Select your region",
+        region_opts: ["Central Guatemala", "Western Highlands", "South Coast", "East", "North"],
+        calc_btn: "Calculate Needs",
+        result_title: "Information calculated!",
+        result_desc: "Basic estimate for your home:",
+        panels: "Suggested panels:",
+        energy: "Daily energy:",
+        more: "Learn more about solar systems →",
+        edu_title: "Learn About Solar Energy",
+        edu_desc: "Simple educational resources to understand solar energy",
+        basics_title: "What is Solar Energy?",
+        basics_desc: "Learn how the sun can generate electricity for your home naturally and cleanly.",
+        basics_btn: "Learn more",
+        how_title: "How Does It Work?",
+        how_desc: "Discover the simple process of turning sunlight into electricity for your family.",
+        how_btn: "See process",
+        cta_title: "Want to Learn More About Solar Energy?",
+        cta_desc: "Explore our educational calculator or connect with local experts to learn more.",
+        cta_btn: "Use Educational Calculator",
+        footer_brand: "Solar Guatemala",
+        footer_desc: "Lighting Guatemala's energy future with cultural respect and accessible solar technology.",
+        footer_ong: "An initiative of a European NGO",
+        footer_rights: "&copy; 2025 Solar Guatemala - European NGO. All rights reserved."
+      },
+      qu: {
+        brand: 'Solar Guatemala',
+        nav_inicio: 'Tikirib\'äl',
+        nav_calculadora: 'Nuk\'unel Ch\'ay',
+        hero_title: 'Tatzij chuwäch <span class="text-secondary">K\'inam Q\'ij</span>',
+        hero_desc: 'Tatz\'ib\'aj achike k\'inam q\'ij k\'atzinel ri awachoch.',
+        stat_clean: 'K\'inam Chajinel',
+        calc_title: 'Nuk\'unel Ch\'ay K\'inam Q\'ij',
+        calc_desc: 'Nuk\'unel Ch\'ay',
+        step1: '¿Jachin kib\'äl ri awachoch?',
+        step2: '¿Achike taq okemanel xtz\'et awas?',
+        step3: '¿Achike ak\'axk\'ol k\'o awach?',
+        rooms: ['1-2', '3-4', '5-6', '7+'],
+        appliances: ['Lum', 'Radio', 'Tz\'apon Telefóno', 'Saqirisanik'],
+        region_label: 'Ticha\' ak\'axk\'ol',
+        region_opts: ['Ruwäch Guatemala', 'Ajk\'amïk Patanïk', 'Rib\' Ajmak', 'Q\'olib\'al', 'Chq\'olib\'al'],
+        calc_btn: 'Tatz\'ib\'aj K\'ojlemal',
+        result_title: '¡Xa xtz\'ib\'aj ri K\'ojlemal!',
+        result_desc: 'Ch\'akulil k\'inam ri awachoch:',
+        panels: 'Taq ruxaq k\'inam:',
+        energy: 'K\'inam q\'ijil:',
+        more: 'Tatzij ch\'aqa\' k\'inam q\'ij →',
+        edu_title: 'Tatzij Chuwäch K\'inam Q\'ij',
+        edu_desc: 'Ch\'akulil na\'oj richin tatzij chuwäch k\'inam q\'ij',
+        basics_title: '¿Achike ri K\'inam Q\'ij?',
+        basics_desc: 'Tatzij achike ri q\'ij nuya\' k\'inam ri awachoch, chajinel chuqa\' natïk.',
+        basics_btn: 'Tatzij ch\'aqa\'',
+        how_title: '¿Achike nuk\'üt?',
+        how_desc: 'Tatzij achike ri q\'ij nuya\' k\'inam pa q\'ijil richin awi\' ri familia.',
+        how_btn: 'Tz\'et rutzub\'al',
+        cta_title: '¿Na katzij ch\'aqa\' k\'inam q\'ij?',
+        cta_desc: 'Tz\'et ri nuk\'unel ch\'ay o xtikib\'än chik ri ch\'utamab\'al k\'inam.',
+        cta_btn: 'Tz\'et ri Nuk\'unel Ch\'ay',
+        footer_brand: 'Solar Guatemala',
+        footer_desc: 'K\'utunem q\'ijil Guatemala richin k\'inam chajinel chuqa\' ruwäch k\'ulmataj.',
+        footer_ong: 'Jun k\'ayib\'al ONG Europa',
+        footer_rights: '&copy; 2025 Solar Guatemala - ONG Europa. Xa kech\'aw rutzijol.'
+      }
+    };
+
+    let currentLang = 'es';
+
+    function translatePage(lang) {
+      const t = translations[lang];
+      // Brand
+      document.querySelectorAll('.text-xl.font-bold.text-primary, .text-2xl.font-bold').forEach(e => { if(e) e.textContent = t.brand; });
+      // Nav
+      document.querySelectorAll('a[href="homepage_interactive_solar_calculator_hub.html"]').forEach(e => { if(e) e.textContent = t.nav_inicio; });
+      document.querySelectorAll('a[href="solar_calculator_advanced_estimation_tool.html"]').forEach(e => { if(e) e.textContent = t.nav_calculadora; });
+      // Hero
+      const heroTitle = document.querySelector('h1.text-4xl, h1.text-6xl');
+      if(heroTitle) heroTitle.innerHTML = t.hero_title;
+      const heroDesc = document.querySelector('.text-xl.text-secondary-200.mb-8, .text-xl.text-primary-100.mb-8');
+      if(heroDesc) heroDesc.textContent = t.hero_desc;
+      // Stat
+      const stat = document.querySelector('.text-sm.text-primary-200');
+      if(stat) stat.textContent = t.stat_clean;
+      // Calculator
+      const calcTitle = document.querySelector('.text-2xl.font-bold.text-primary.mb-2');
+      if(calcTitle) calcTitle.textContent = t.calc_title;
+      const calcDesc = document.querySelector('.text-text-secondary');
+      if(calcDesc) calcDesc.textContent = t.calc_desc;
+      // Steps
+      const step1 = document.querySelectorAll('label.block.text-sm.font-semibold.text-primary')[0];
+      if(step1) step1.childNodes[2].textContent = t.step1;
+      const step2 = document.querySelectorAll('label.block.text-sm.font-semibold.text-primary')[1];
+      if(step2) step2.childNodes[2].textContent = t.step2;
+      const step3 = document.querySelectorAll('label.block.text-sm.font-semibold.text-primary')[2];
+      if(step3) step3.childNodes[2].textContent = t.step3;
+      // Room buttons
+      document.querySelectorAll('.room-btn').forEach((btn, i) => { btn.textContent = t.rooms[i] || btn.textContent; });
+      // Appliances
+      document.querySelectorAll('.appliance-checkbox').forEach((cb, i) => {
+        const span = cb.parentElement.querySelector('span.text-sm');
+        if(span) span.textContent = t.appliances[i] || span.textContent;
+      });
+      // Region
+      const regionLabel = document.querySelectorAll('label.block.text-sm.font-semibold.text-primary')[2];
+      if(regionLabel) regionLabel.childNodes[2].textContent = t.step3;
+      const regionSelect = document.getElementById('region-select');
+      if(regionSelect) {
+        regionSelect.options[0].textContent = t.region_label;
+        for(let i=1; i<=5; i++) {
+          if(regionSelect.options[i]) regionSelect.options[i].textContent = t.region_opts[i-1];
+        }
+      }
+      // Calculate button
+      const calcBtn = document.querySelector('button[type="submit"] > span');
+      if(calcBtn) calcBtn.textContent = t.calc_btn;
+      // Result
+      const resultTitle = document.querySelector('#simple-result .text-success.font-semibold.mb-2');
+      if(resultTitle) resultTitle.textContent = t.result_title;
+      const resultDesc = document.querySelector('#simple-result .text-sm.text-text-secondary.mb-3');
+      if(resultDesc) resultDesc.textContent = t.result_desc;
+      const panels = document.querySelector('#simple-result .font-semibold.text-primary');
+      if(panels) panels.textContent = t.panels;
+      const energy = document.querySelectorAll('#simple-result .font-semibold.text-primary')[1];
+      if(energy) energy.textContent = t.energy;
+      const more = document.querySelector('#simple-result a');
+      if(more) more.textContent = t.more;
+      // Educational section
+      const eduTitle = document.querySelector('section.bg-gradient-to-br h2');
+      if(eduTitle) eduTitle.textContent = t.edu_title;
+      const eduDesc = document.querySelector('section.bg-gradient-to-br p.text-xl');
+      if(eduDesc) eduDesc.textContent = t.edu_desc;
+      // Basics card
+      const basicsTitle = document.querySelectorAll('.card h3.text-xl.font-bold.text-primary.mb-3')[0];
+      if(basicsTitle) basicsTitle.textContent = t.basics_title;
+      const basicsDesc = document.querySelectorAll('.card p.text-text-secondary.mb-4')[0];
+      if(basicsDesc) basicsDesc.textContent = t.basics_desc;
+      const basicsBtn = document.querySelectorAll('.card a.inline-flex')[0];
+      if(basicsBtn) basicsBtn.childNodes[0].textContent = t.basics_btn;
+      // How card
+      const howTitle = document.querySelectorAll('.card h3.text-xl.font-bold.text-primary.mb-3')[1];
+      if(howTitle) howTitle.textContent = t.how_title;
+      const howDesc = document.querySelectorAll('.card p.text-text-secondary.mb-4')[1];
+      if(howDesc) howDesc.textContent = t.how_desc;
+      const howBtn = document.querySelectorAll('.card a.inline-flex')[1];
+      if(howBtn) howBtn.childNodes[0].textContent = t.how_btn;
+      // CTA
+      const ctaTitle = document.querySelector('section.bg-gradient-to-r h2');
+      if(ctaTitle) ctaTitle.textContent = t.cta_title;
+      const ctaDesc = document.querySelector('section.bg-gradient-to-r p.text-xl');
+      if(ctaDesc) ctaDesc.textContent = t.cta_desc;
+      const ctaBtn = document.querySelector('section.bg-gradient-to-r a');
+      if(ctaBtn) ctaBtn.textContent = t.cta_btn;
+      // Footer
+      const fbrand = document.querySelector('footer .text-2xl.font-bold');
+      if(fbrand) fbrand.textContent = t.footer_brand;
+      const fdesc = document.querySelector('footer .text-primary-200');
+      if(fdesc) fdesc.textContent = t.footer_desc;
+      const fong = document.querySelector('footer .text-sm.text-primary-300');
+      if(fong) fong.textContent = t.footer_ong;
+      const fright = document.querySelector('footer .border-t p');
+      if(fright) fright.innerHTML = t.footer_rights;
+    }
+
+    document.getElementById('language-selector').addEventListener('change', function() {
+      let val = this.value;
+      if(val === 'kiche') val = 'qu';
+      currentLang = val;
+      localStorage.setItem('solar_lang', currentLang);
+      translatePage(currentLang);
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      let savedLang = localStorage.getItem('solar_lang');
+      if(savedLang && translations[savedLang]) {
+        currentLang = savedLang;
+        document.getElementById('language-selector').value = (savedLang === 'qu') ? 'kiche' : savedLang;
+      }
+      translatePage(currentLang);
+    });
+    </script>

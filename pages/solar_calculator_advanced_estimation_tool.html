@@ -1,0 +1,1204 @@
+<style>
+      /* Oculta los sistemas solar en resultados */
+      #step-4-content .card { display: none !important; }
+    </style>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Solar Avanzada - Solar Guatemala</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <meta name="description" content="Calculadora solar avanzada para Guatemala. Herramienta interactiva que calcula tu sistema solar ideal con visualización 3D y opciones de financiamiento." />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fsolarguat2939back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.6"></script>
+</head>
+<body class="bg-background font-nunito">
+    <!-- Navigation Header -->
+    <nav class="bg-surface shadow-cosmic sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <svg class="w-8 h-8 text-secondary mr-3" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                    </svg>
+                    <span class="text-xl font-bold text-primary">Solar Guatemala</span>
+                </div>
+
+                <!-- Language Selector -->
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <select id="language-selector" class="appearance-none bg-primary-50 border border-primary-200 rounded-lg px-4 py-2 pr-8 text-primary font-medium focus:outline-none focus:ring-2 focus:ring-primary-500">
+                            <option value="es" selected>Español</option>
+                            <option value="en">English</option>
+                            <option value="qu">K'iche'</option>
+                        </select>
+                        <svg class="absolute right-2 top-3 w-4 h-4 text-primary pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </div>
+
+                    <!-- Navigation Menu -->
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="homepage_interactive_solar_calculator_hub.html" class="text-text-secondary hover:text-primary transition-colors">Inicio</a>
+                        <a href="solar_calculator_advanced_estimation_tool.html" class="text-primary font-semibold border-b-2 border-secondary">Calculadora</a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-primary-50">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="homepage_interactive_solar_calculator_hub.html" class="text-text-secondary hover:text-primary py-2">Inicio</a>
+                    <a href="solar_calculator_advanced_estimation_tool.html" class="text-primary font-semibold py-2">Calculadora</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Progress Indicator -->
+    <div class="bg-surface border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <h1 class="text-2xl font-bold text-primary">Calculadora Solar Avanzada</h1>
+                <div class="flex items-center space-x-2">
+                    <div class="flex items-center space-x-1">
+                        <div id="step-1" class="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center text-sm font-semibold">1</div>
+                        <div class="w-8 h-1 bg-primary-200"></div>
+                        <div id="step-2" class="w-8 h-8 rounded-full bg-primary-200 text-primary flex items-center justify-center text-sm font-semibold">2</div>
+                        <div class="w-8 h-1 bg-primary-200"></div>
+                        <div id="step-3" class="w-8 h-8 rounded-full bg-primary-200 text-primary flex items-center justify-center text-sm font-semibold">3</div>
+                        <div class="w-8 h-1 bg-primary-200"></div>
+                        <div id="step-4" class="w-8 h-8 rounded-full bg-primary-200 text-primary flex items-center justify-center text-sm font-semibold">4</div>
+                    </div>
+                    <div class="ml-4 text-sm text-text-secondary">
+                        <span id="current-step-text">Paso 1 de 4: Electrodomésticos</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calculator Interface -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Main Calculator -->
+            <div class="lg:col-span-2">
+                <!-- Step 1: Appliance Selection -->
+                <div id="step-1-content" class="calculator-interface">
+                    <div class="text-center mb-8">
+                        <svg class="w-16 h-16 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        <h2 class="text-3xl font-bold text-primary mb-2">¿Qué electrodomésticos usas?</h2>
+                        <p class="text-text-secondary">Selecciona los aparatos que usas en tu hogar para calcular tu consumo de energía</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Refrigerator -->
+                        <div class="appliance-card border-2 border-border rounded-lg p-6 cursor-pointer hover:border-primary-300 transition-colors" data-appliance="refrigerator" data-consumption="150">
+                            <div class="text-center">
+                                <img src="https://images.pexels.com/photos/2343468/pexels-photo-2343468.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Refrigeradora" class="w-20 h-20 mx-auto mb-4 object-cover rounded-lg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <h3 class="font-semibold text-primary mb-2">Refrigeradora</h3>
+                                <p class="text-sm text-text-secondary mb-3">Mantiene frescos tus alimentos</p>
+                                <div class="text-xs text-accent">~150W por hora</div>
+                                <div class="mt-3">
+                                    <input type="checkbox" class="appliance-checkbox hidden" />
+                                    <div class="checkbox-visual w-6 h-6 border-2 border-primary-300 rounded mx-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Television -->
+                        <div class="appliance-card border-2 border-border rounded-lg p-6 cursor-pointer hover:border-primary-300 transition-colors" data-appliance="television" data-consumption="80">
+                            <div class="text-center">
+                                <img src="https://images.pixabay.com/photo/2019/06/24/20/17/tv-4296846_960_720.jpg" alt="Televisión" class="w-20 h-20 mx-auto mb-4 object-cover rounded-lg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <h3 class="font-semibold text-primary mb-2">Televisión</h3>
+                                <p class="text-sm text-text-secondary mb-3">Para entretenimiento familiar</p>
+                                <div class="text-xs text-accent">~80W por hora</div>
+                                <div class="mt-3">
+                                    <input type="checkbox" class="appliance-checkbox hidden" />
+                                    <div class="checkbox-visual w-6 h-6 border-2 border-primary-300 rounded mx-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Lights -->
+                        <div class="appliance-card border-2 border-border rounded-lg p-6 cursor-pointer hover:border-primary-300 transition-colors" data-appliance="lights" data-consumption="60">
+                            <div class="text-center">
+                                <img src="https://images.unsplash.com/photo-1524484485831-a92ffc0de03f?auto=format&fit=crop&w=200&q=80" alt="Luces LED" class="w-20 h-20 mx-auto mb-4 object-cover rounded-lg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <h3 class="font-semibold text-primary mb-2">Luces LED</h3>
+                                <p class="text-sm text-text-secondary mb-3">Iluminación para toda la casa</p>
+                                <div class="text-xs text-accent">~60W total</div>
+                                <div class="mt-3">
+                                    <input type="checkbox" class="appliance-checkbox hidden" />
+                                    <div class="checkbox-visual w-6 h-6 border-2 border-primary-300 rounded mx-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Radio -->
+                        <div class="appliance-card border-2 border-border rounded-lg p-6 cursor-pointer hover:border-primary-300 transition-colors" data-appliance="radio" data-consumption="20">
+                            <div class="text-center">
+                                <img src="https://images.pexels.com/photos/1591447/pexels-photo-1591447.jpeg?auto=compress&cs=tinysrgb&w=200" alt="Radio" class="w-20 h-20 mx-auto mb-4 object-cover rounded-lg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <h3 class="font-semibold text-primary mb-2">Radio/Música</h3>
+                                <p class="text-sm text-text-secondary mb-3">Entretenimiento y noticias</p>
+                                <div class="text-xs text-accent">~20W por hora</div>
+                                <div class="mt-3">
+                                    <input type="checkbox" class="appliance-checkbox hidden" />
+                                    <div class="checkbox-visual w-6 h-6 border-2 border-primary-300 rounded mx-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fan -->
+                        <div class="appliance-card border-2 border-border rounded-lg p-6 cursor-pointer hover:border-primary-300 transition-colors" data-appliance="fan" data-consumption="75">
+                            <div class="text-center">
+                                <img src="https://images.pixabay.com/photo/2017/08/01/11/48/fan-2564576_960_720.jpg" alt="Ventilador" class="w-20 h-20 mx-auto mb-4 object-cover rounded-lg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <h3 class="font-semibold text-primary mb-2">Ventilador</h3>
+                                <p class="text-sm text-text-secondary mb-3">Aire fresco y circulación</p>
+                                <div class="text-xs text-accent">~75W por hora</div>
+                                <div class="mt-3">
+                                    <input type="checkbox" class="appliance-checkbox hidden" />
+                                    <div class="checkbox-visual w-6 h-6 border-2 border-primary-300 rounded mx-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Washing Machine -->
+                        <div class="appliance-card border-2 border-border rounded-lg p-6 cursor-pointer hover:border-primary-300 transition-colors" data-appliance="washing" data-consumption="500">
+                            <div class="text-center">
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=200&q=80" alt="Lavadora" class="w-20 h-20 mx-auto mb-4 object-cover rounded-lg" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                                <h3 class="font-semibold text-primary mb-2">Lavadora</h3>
+                                <p class="text-sm text-text-secondary mb-3">Para lavar la ropa</p>
+                                <div class="text-xs text-accent">~500W por ciclo</div>
+                                <div class="mt-3">
+                                    <input type="checkbox" class="appliance-checkbox hidden" />
+                                    <div class="checkbox-visual w-6 h-6 border-2 border-primary-300 rounded mx-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button id="next-step-1" class="btn-primary text-lg px-8 py-4 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Continuar al Siguiente Paso
+                            <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Usage Patterns -->
+                <div id="step-2-content" class="calculator-interface hidden">
+                    <div class="text-center mb-8">
+                        <svg class="w-16 h-16 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <h2 class="text-3xl font-bold text-primary mb-2">¿Cuándo usas más energía?</h2>
+                        <p class="text-text-secondary">Como guardar agua de lluvia para la época seca, necesitamos saber cuándo usas más electricidad</p>
+                    </div>
+
+                    <!-- Daily Usage Pattern -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold text-primary mb-4">Patrón de uso diario</h3>
+                        <div class="bg-primary-50 rounded-lg p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-2">
+                                    <svg class="w-6 h-6 text-secondary" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                                    </svg>
+                                    <span class="font-medium text-primary">Día (6:00 AM - 6:00 PM)</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <svg class="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                                    </svg>
+                                    <span class="font-medium text-primary">Noche (6:00 PM - 6:00 AM)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-4">
+                                    <h4 class="font-medium text-primary">Uso durante el día</h4>
+                                    <div class="space-y-3">
+                                        <label class="flex items-center justify-between p-3 bg-white rounded-lg cursor-pointer hover:bg-primary-50">
+                                            <span class="text-sm">Uso ligero (solo refrigeradora)</span>
+                                            <input type="radio" name="day-usage" value="light" class="text-primary focus:ring-primary-500" />
+                                        </label>
+                                        <label class="flex items-center justify-between p-3 bg-white rounded-lg cursor-pointer hover:bg-primary-50">
+                                            <span class="text-sm">Uso moderado (algunos aparatos)</span>
+                                            <input type="radio" name="day-usage" value="moderate" class="text-primary focus:ring-primary-500" />
+                                        </label>
+                                        <label class="flex items-center justify-between p-3 bg-white rounded-lg cursor-pointer hover:bg-primary-50">
+                                            <span class="text-sm">Uso intenso (todos los aparatos)</span>
+                                            <input type="radio" name="day-usage" value="heavy" class="text-primary focus:ring-primary-500" />
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <h4 class="font-medium text-primary">Uso durante la noche</h4>
+                                    <div class="space-y-3">
+                                        <label class="flex items-center justify-between p-3 bg-white rounded-lg cursor-pointer hover:bg-primary-50">
+                                            <span class="text-sm">Uso ligero (luces y refrigeradora)</span>
+                                            <input type="radio" name="night-usage" value="light" class="text-primary focus:ring-primary-500" />
+                                        </label>
+                                        <label class="flex items-center justify-between p-3 bg-white rounded-lg cursor-pointer hover:bg-primary-50">
+                                            <span class="text-sm">Uso moderado (TV, luces, refrigeradora)</span>
+                                            <input type="radio" name="night-usage" value="moderate" class="text-primary focus:ring-primary-500" />
+                                        </label>
+                                        <label class="flex items-center justify-between p-3 bg-white rounded-lg cursor-pointer hover:bg-primary-50">
+                                            <span class="text-sm">Uso intenso (todos los aparatos)</span>
+                                            <input type="radio" name="night-usage" value="heavy" class="text-primary focus:ring-primary-500" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <button id="prev-step-2" class="bg-border text-text-primary font-semibold py-3 px-6 rounded-lg hover:bg-primary-100 transition-colors">
+                            <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                            Regresar
+                        </button>
+                        <button id="next-step-2" class="btn-primary text-lg px-8 py-4 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Continuar al Siguiente Paso
+                            <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Location & Roof -->
+                <div id="step-3-content" class="calculator-interface hidden">
+                    <div class="text-center mb-8">
+                        <svg class="w-16 h-16 text-secondary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <h2 class="text-3xl font-bold text-primary mb-2">Tu ubicación y techo</h2>
+                        <p class="text-text-secondary">Información sobre tu ubicación y techo para calcular la mejor instalación solar</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Location -->
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold text-primary mb-3">
+                                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    ¿En qué departamento de Guatemala vives?
+                                </label>
+                                <select id="region-select" class="w-full p-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                    <option value>Selecciona tu departamento</option>
+                                    <option value="guatemala">Guatemala</option>
+                                    <option value="quetzaltenango">Quetzaltenango</option>
+                                    <option value="huehuetenango">Huehuetenango</option>
+                                    <option value="alta-verapaz">Alta Verapaz</option>
+                                    <option value="peten">Petén</option>
+                                    <option value="izabal">Izabal</option>
+                                    <option value="sacatepequez">Sacatepéquez</option>
+                                    <option value="chimaltenango">Chimaltenango</option>
+                                    <option value="solola">Sololá</option>
+                                    <option value="totonicapan">Totonicapán</option>
+                                    <option value="san-marcos">San Marcos</option>
+                                    <option value="other">Otro departamento</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-primary mb-3">
+                                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z"/>
+                                    </svg>
+                                    ¿Qué tipo de techo tienes?
+                                </label>
+                                <div class="space-y-3">
+                                    <label class="flex items-center space-x-3 p-3 border border-border rounded-lg hover:bg-primary-50 cursor-pointer">
+                                        <input type="radio" name="roof-type" value="concrete" class="text-primary focus:ring-primary-500" />
+                                        <span class="text-sm">Concreto/Losa (plano)</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3 border border-border rounded-lg hover:bg-primary-50 cursor-pointer">
+                                        <input type="radio" name="roof-type" value="metal" class="text-primary focus:ring-primary-500" />
+                                        <span class="text-sm">Lámina metálica (inclinado)</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3 border border-border rounded-lg hover:bg-primary-50 cursor-pointer">
+                                        <input type="radio" name="roof-type" value="tile" class="text-primary focus:ring-primary-500" />
+                                        <span class="text-sm">Teja de barro (inclinado)</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3 border border-border rounded-lg hover:bg-primary-50 cursor-pointer">
+                                        <input type="radio" name="roof-type" value="other" class="text-primary focus:ring-primary-500" />
+                                        <span class="text-sm">Otro tipo de techo</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3D Roof Visualization -->
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-lg font-semibold text-primary mb-4">Visualización de tu techo</h3>
+                                <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg p-6 text-center">
+                                    <div id="roof-visualization" class="relative">
+                                        <!-- Default Roof Visualization -->
+                                        <div id="default-roof" class="roof-visual">
+                                            <svg class="w-full h-48 mx-auto" viewBox="0 0 300 200">
+                                                <defs>
+                                                    <linearGradient id="roofGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                        <stop offset="0%" style="stop-color:#e3f2fd;stop-opacity:1"/>
+                                                        <stop offset="100%" style="stop-color:#bbdefb;stop-opacity:1"/>
+                                                    </linearGradient>
+                                                </defs>
+                                                <!-- House base -->
+                                                <rect x="50" y="120" width="200" height="60" fill="#f5f5f5" stroke="#ddd" stroke-width="2"/>
+                                                <!-- Roof -->
+                                                <polygon points="40,120 150,60 260,120" fill="url(#roofGradient)" stroke="#1976d2" stroke-width="2"/>
+                                                <!-- Solar panels placeholder -->
+                                                <rect x="80" y="80" width="40" height="25" fill="#1a237e" opacity="0.3" rx="2"/>
+                                                <rect x="130" y="75" width="40" height="25" fill="#1a237e" opacity="0.3" rx="2"/>
+                                                <rect x="180" y="80" width="40" height="25" fill="#1a237e" opacity="0.3" rx="2"/>
+                                                <!-- Sun -->
+                                                <circle cx="250" cy="30" r="15" fill="#ff8f00"/>
+                                                <path d="M250 10 L250 5 M270 30 L275 30 M265 15 L268 12 M265 45 L268 48 M235 15 L232 12 M235 45 L232 48 M230 30 L225 30 M250 50 L250 55" stroke="#ff8f00" stroke-width="2"/>
+                                            </svg>
+                                        </div>
+                                        
+                                        <div class="mt-4 text-sm text-text-secondary">
+                                            <p>Vista previa de cómo se verían los paneles solares en tu techo</p>
+                                            <p class="text-xs mt-1">La visualización se actualizará según el tipo de techo que selecciones</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-primary mb-3">
+                                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                                    </svg>
+                                    ¿Cuánto espacio libre tienes en tu techo?
+                                </label>
+                                <div class="space-y-3">
+                                    <label class="flex items-center space-x-3 p-3 border border-border rounded-lg hover:bg-primary-50 cursor-pointer">
+                                        <input type="radio" name="roof-space" value="small" class="text-primary focus:ring-primary-500" />
+                                        <span class="text-sm">Pequeño (2-4 paneles)</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3 border border-border rounded-lg hover:bg-primary-50 cursor-pointer">
+                                        <input type="radio" name="roof-space" value="medium" class="text-primary focus:ring-primary-500" />
+                                        <span class="text-sm">Mediano (5-8 paneles)</span>
+                                    </label>
+                                    <label class="flex items-center space-x-3 p-3 border border-border rounded-lg hover:bg-primary-50 cursor-pointer">
+                                        <input type="radio" name="roof-space" value="large" class="text-primary focus:ring-primary-500" />
+                                        <span class="text-sm">Grande (9+ paneles)</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button id="prev-step-3" class="bg-border text-text-primary font-semibold py-3 px-6 rounded-lg hover:bg-primary-100 transition-colors">
+                            <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                            Regresar
+                        </button>
+                        <button id="next-step-3" class="btn-primary text-lg px-8 py-4 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Ver Resultados
+                            <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Results -->
+                <div id="step-4-content" class="calculator-interface hidden">
+                    <div class="text-center mb-8">
+                        <svg class="w-16 h-16 text-success mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <h2 class="text-3xl font-bold text-primary mb-2">Tu Sistema Solar Personalizado</h2>
+                        <p class="text-text-secondary">Un aproximado basado en tus respuestas y necesidades</p>
+                    </div>
+
+                    <!-- System Recommendations -->
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <!-- Opciones de sistemas eliminadas por solicitud -->
+                    </div>
+
+                    <!-- Installation Timeline -->
+                    <div class="bg-primary-50 rounded-lg p-6 mb-8">
+                        <h3 class="text-xl font-semibold text-primary mb-4 text-center">Proceso de Instalación</h3>
+                        <div class="grid md:grid-cols-4 gap-4">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <span class="text-white font-bold">1</span>
+                                </div>
+                                <h4 class="font-semibold text-primary mb-2">Consulta</h4>
+                                <p class="text-sm text-text-secondary">Visita técnica gratuita a tu hogar</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <span class="text-white font-bold">2</span>
+                                </div>
+                                <h4 class="font-semibold text-primary mb-2">Diseño</h4>
+                                <p class="text-sm text-text-secondary">Diseño personalizado para tu techo</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <span class="text-white font-bold">3</span>
+                                </div>
+                                <h4 class="font-semibold text-primary mb-2">Instalación</h4>
+                                <p class="text-sm text-text-secondary">Instalación profesional certificada</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-success rounded-full flex items-center justify-center mx-auto mb-3">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <h4 class="font-semibold text-primary mb-2">Activación</h4>
+                                <p class="text-sm text-text-secondary">Tu sistema solar funcionando</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <button id="prev-step-4" class="bg-border text-text-primary font-semibold py-3 px-6 rounded-lg hover:bg-primary-100 transition-colors">
+                            <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                            Regresar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-1">
+                <!-- Current Calculation Summary -->
+                <div class="card mb-6 sticky top-24">
+                    <h3 class="text-lg font-semibold text-primary mb-4">Resumen de tu Cálculo</h3>
+                    
+                    <!-- Selected Appliances -->
+                    <div class="mb-4">
+                        <h4 class="font-medium text-primary mb-2">Electrodomésticos seleccionados:</h4>
+                        <div id="selected-appliances" class="space-y-2 text-sm text-text-secondary">
+                            <p class="text-center text-text-secondary italic">Selecciona electrodomésticos para ver el resumen</p>
+                        </div>
+                    </div>
+
+                    <!-- Energy Consumption -->
+                    <div class="mb-4">
+                        <h4 class="font-medium text-primary mb-2">Consumo estimado:</h4>
+                        <div class="bg-primary-50 rounded-lg p-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm">Consumo diario:</span>
+                                <span id="daily-consumption" class="font-semibold text-secondary">0 kWh</span>
+                            </div>
+                            <div class="flex justify-between items-center mt-1">
+                                <span class="text-sm">Consumo mensual:</span>
+                                <span id="monthly-consumption" class="font-semibold text-primary">0 kWh</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Current Bill Estimate -->
+                    <div class="mb-4">
+                        <h4 class="font-medium text-primary mb-2">Factura actual estimada:</h4>
+                        <div class="bg-warning/10 rounded-lg p-3">
+                            <div class="text-center">
+                                <span id="current-bill" class="text-2xl font-bold text-warning">Q0</span>
+                                <p class="text-xs text-text-secondary">por mes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Solar Potential -->
+                    <div id="solar-potential" class="hidden">
+                        <h4 class="font-medium text-primary mb-2">Potencial solar:</h4>
+                        <div class="bg-success/10 rounded-lg p-3">
+                            <div class="text-center">
+                                <span id="potential-savings" class="text-2xl font-bold text-success">Q0</span>
+                                <p class="text-xs text-text-secondary">ahorro mensual</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Help & Tips -->
+                <div class="card">
+                    <h3 class="text-lg font-semibold text-primary mb-4">Consejos Útiles</h3>
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                            </svg>
+                            <div>
+                                <p class="font-medium text-primary">Orientación del techo</p>
+                                <p class="text-text-secondary">Los techos orientados al sur reciben más sol durante el día</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <svg class="w-5 h-5 text-primary mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            <div>
+                                <p class="font-medium text-primary">Garantía</p>
+                                <p class="text-text-secondary">Todos nuestros sistemas incluyen garantía de (n. de años)</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-primary-900 text-white py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center justify-center text-center">
+                <!-- Brand -->
+                <div class="mb-6">
+                    <div class="flex items-center justify-center mb-4">
+                        <svg class="w-8 h-8 text-secondary mr-3" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z"/>
+                        </svg>
+                        <span class="text-2xl font-bold">Solar Guatemala</span>
+                    </div>
+                    <p class="text-primary-200 mb-4">
+                        Iluminando el futuro energético de Guatemala con respeto cultural y tecnología solar accesible.
+                    </p>
+                    <div class="text-sm text-primary-300 mb-6">
+                        Una iniciativa de ONG Europea
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-primary-700 mt-8 pt-8 text-center text-primary-300">
+                <p>&copy; 2025 Solar Guatemala - ONG Europea. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Global variables
+        let currentStep = 1;
+        let selectedAppliances = [];
+        let usagePatterns = {};
+        let locationData = {};
+        let calculationResults = {};
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+
+        // Traducciones para todos los textos visibles
+        const translations = {
+            es: {
+                brand: "Solar Guatemala",
+                nav_inicio: "Inicio",
+                nav_calculadora: "Calculadora",
+                step_titles: [
+                    "¿Qué electrodomésticos usas?",
+                    "¿Cuándo usas más energía?",
+                    "Tu ubicación y techo",
+                    "Tu Sistema Solar Personalizado"
+                ],
+                step_subtitles: [
+                    "Selecciona los aparatos que usas en tu hogar para calcular tu consumo de energía",
+                    "Como guardar agua de lluvia para la época seca, necesitamos saber cuándo usas más electricidad",
+                    "Información sobre tu ubicación y techo para calcular la mejor instalación solar",
+                    "Un aproximado basado en tus respuestas y necesidades"
+                ],
+                step_labels: [
+                    "Paso 1 de 4: Electrodomésticos",
+                    "Paso 2 de 4: Patrones de Uso",
+                    "Paso 3 de 4: Ubicación y Techo",
+                    "Paso 4 de 4: Resultados"
+                ],
+                next: "Continuar al Siguiente Paso",
+                prev: "Regresar",
+                ver_resultados: "Ver Resultados",
+                selected_appliances: "Electrodomésticos seleccionados:",
+                consumo_estimado: "Consumo estimado:",
+                consumo_diario: "Consumo diario:",
+                consumo_mensual: "Consumo mensual:",
+                factura_actual: "Factura actual estimada:",
+                potencial_solar: "Potencial solar:",
+                ahorro_mensual: "ahorro mensual",
+                consejos: "Consejos Útiles",
+                consejo1_t: "Orientación del techo",
+                consejo1_d: "Los techos orientados al sur reciben más sol durante el día",
+                consejo2_t: "Garantía",
+                consejo2_d: "Todos nuestros sistemas incluyen garantía de (n. de años)",
+                guardar: "Guardar Resultados",
+                resumen: "Resumen de tu Cálculo",
+                proceso_instalacion: "Proceso de Instalación",
+                pasos_instalacion: [
+                    ["Consulta", "Visita técnica gratuita a tu hogar"],
+                    ["Diseño", "Diseño personalizado para tu techo"],
+                    ["Instalación", "Instalación profesional certificada"],
+                    ["Activación", "Tu sistema solar funcionando"]
+                ],
+                footer_brand: "Solar Guatemala",
+                footer_desc: "Iluminando el futuro energético de Guatemala con respeto cultural y tecnología solar accesible.",
+                footer_ong: "Una iniciativa de ONG Europea",
+                footer_rights: "&copy; 2025 Solar Guatemala - ONG Europea. Todos los derechos reservados.",
+                pdf_title: "Resumen de tu Sistema Solar",
+                pdf_appliances: "Electrodomésticos seleccionados:",
+                pdf_consumo: "Consumo estimado:",
+                pdf_factura: "Factura actual estimada:",
+                pdf_potencial: "Potencial solar:",
+                pdf_consejos: "Consejos Útiles:"
+            },
+            en: {
+                brand: "Solar Guatemala",
+                nav_inicio: "Home",
+                nav_calculadora: "Calculator",
+                step_titles: [
+                    "Which appliances do you use?",
+                    "When do you use more energy?",
+                    "Your location and roof",
+                    "Your Personalized Solar System"
+                ],
+                step_subtitles: [
+                    "Select the appliances you use at home to calculate your energy consumption",
+                    "Like saving rainwater for the dry season, we need to know when you use more electricity",
+                    "Information about your location and roof to calculate the best solar installation",
+                    "An estimate based on your answers and needs"
+                ],
+                step_labels: [
+                    "Step 1 of 4: Appliances",
+                    "Step 2 of 4: Usage Patterns",
+                    "Step 3 of 4: Location & Roof",
+                    "Step 4 of 4: Results"
+                ],
+                next: "Continue to Next Step",
+                prev: "Back",
+                ver_resultados: "See Results",
+                selected_appliances: "Selected appliances:",
+                consumo_estimado: "Estimated consumption:",
+                consumo_diario: "Daily consumption:",
+                consumo_mensual: "Monthly consumption:",
+                factura_actual: "Estimated current bill:",
+                potencial_solar: "Solar potential:",
+                ahorro_mensual: "monthly savings",
+                consejos: "Useful Tips",
+                consejo1_t: "Roof orientation",
+                consejo1_d: "Roofs facing south receive more sun during the day",
+                consejo2_t: "Warranty",
+                consejo2_d: "All our systems include a (n. years) warranty",
+                guardar: "Save Results",
+                resumen: "Your Calculation Summary",
+                proceso_instalacion: "Installation Process",
+                pasos_instalacion: [
+                    ["Consultation", "Free technical visit to your home"],
+                    ["Design", "Custom design for your roof"],
+                    ["Installation", "Certified professional installation"],
+                    ["Activation", "Your solar system working"]
+                ],
+                footer_brand: "Solar Guatemala",
+                footer_desc: "Lighting Guatemala's energy future with cultural respect and accessible solar technology.",
+                footer_ong: "An initiative of a European NGO",
+                footer_rights: "&copy; 2025 Solar Guatemala - European NGO. All rights reserved.",
+                pdf_title: "Your Solar System Summary",
+                pdf_appliances: "Selected appliances:",
+                pdf_consumo: "Estimated consumption:",
+                pdf_factura: "Estimated current bill:",
+                pdf_potencial: "Solar potential:",
+                pdf_consejos: "Useful Tips:"
+            },
+            qu: {
+                brand: 'Solar Guatemala',
+                nav_inicio: 'Tikirib\'äl',
+                nav_calculadora: 'Nuk\'unel Ch\'ay',
+                step_titles: [
+                    '¿Achike ri k\'ayib\'äl taq ruwäch?',
+                    '¿Achike junam k\'o chwe k\'ayib\'äl?',
+                    'K\'ojlib\'äl chuwäch ri ataq\'anik',
+                    'Atz\'ib\'äl k\'ayib\'äl solarex'
+                ],
+                step_subtitles: [
+                    'Ticha\' ri k\'ayib\'äl taq ruwäch chuwäch ri ataq\'anik richin natz\'ib\'äx ri k\'ayib\'äl',
+                    'K\'o chi natz\'ib\'äx junam k\'o chwe k\'ayib\'äl',
+                    'K\'ojlib\'äl chuwäch ri ataq\'anik richin natz\'ib\'äx ri k\'ayib\'äl solar',
+                    'Jun tz\'ib\'äl chi ri natz\'ib\'äx ri k\'ayib\'äl'
+                ],
+                step_labels: [
+                    'Ruk\'isib\'äl 1 chike 4: K\'ayib\'äl',
+                    'Ruk\'isib\'äl 2 chike 4: Taq k\'ayib\'äl',
+                    'Ruk\'isib\'äl 3 chike 4: K\'ojlib\'äl & Taq\'anik',
+                    'Ruk\'isib\'äl 4 chike 4: Tz\'ib\'äl'
+                ],
+                next: 'Titz\'ët chik',
+                prev: 'Titzol',
+                ver_resultados: 'Titz\'ët Tz\'ib\'äl',
+                selected_appliances: 'K\'ayib\'äl taq ruwäch:',
+                consumo_estimado: 'K\'ayib\'äl tz\'ib\'äl:',
+                consumo_diario: 'K\'ayib\'äl q\'ij:',
+                consumo_mensual: 'K\'ayib\'äl ik\'',
+                factura_actual: 'Tz\'ib\'äl k\'ayib\'äl:',
+                potencial_solar: 'K\'ayib\'äl solar:',
+                ahorro_mensual: 'K\'ayib\'äl ik\'',
+                consejos: 'Taq k\'ayib\'äl',
+                consejo1_t: 'K\'ayib\'äl ruwäch',
+                consejo1_d: 'Ri ruwäch k\'o pa q\'ij k\'o chwe k\'ayib\'äl',
+                consejo2_t: 'Ch\'akulal',
+                consejo2_d: 'K\'o chwe ch\'akulal (n. taq ik\')',
+                guardar: 'Tiyak Tz\'ib\'äl',
+                resumen: 'Tz\'ib\'äl k\'ayib\'äl',
+                proceso_instalacion: 'Ruk\'isib\'äl k\'ayib\'äl',
+                pasos_instalacion: [
+                    ['Tz\'ib\'äl', 'Tz\'ib\'äl k\'ayib\'äl chuwäch ataq\'anik'],
+                    ['Tz\'ib\'äl', 'Tz\'ib\'äl k\'ayib\'äl chuwäch ruwäch'],
+                    ['K\'ayib\'äl', 'K\'ayib\'äl chuwäch ruwäch'],
+                    ['K\'ayib\'äl', 'K\'ayib\'äl chuwäch ruwäch']
+                ],
+                footer_brand: 'Solar Guatemala',
+                footer_desc: 'K\'ayib\'äl chuwäch ri Guatemala k\'ayib\'äl solar.',
+                footer_ong: 'Jun ONG Europea',
+                footer_rights: '&copy; 2025 Solar Guatemala - ONG Europea. K\'o chwe taq k\'ayib\'äl.',
+                pdf_title: 'Tz\'ib\'äl k\'ayib\'äl solar',
+                pdf_appliances: 'K\'ayib\'äl taq ruwäch:',
+                pdf_consumo: 'K\'ayib\'äl tz\'ib\'äl:',
+                pdf_factura: 'Tz\'ib\'äl k\'ayib\'äl:',
+                pdf_potencial: 'K\'ayib\'äl solar:',
+                pdf_consejos: 'Taq k\'ayib\'äl:'
+            }
+        };
+
+        let currentLang = 'es';
+
+
+        function translatePage(lang) {
+            const t = translations[lang];
+            // Brand
+            document.querySelectorAll('.text-xl.font-bold.text-primary, .text-2xl.font-bold').forEach(e => { if(e) e.textContent = t.brand; });
+            // Nav
+            document.querySelectorAll('a[href="homepage_interactive_solar_calculator_hub.html"]').forEach(e => { if(e) e.textContent = t.nav_inicio; });
+            document.querySelectorAll('a[href="solar_calculator_advanced_estimation_tool.html"]').forEach(e => { if(e) e.textContent = t.nav_calculadora; });
+            // Step titles and subtitles
+            document.querySelectorAll('.calculator-interface').forEach((step, i) => {
+                const h2 = step.querySelector('h2');
+                if (h2) h2.textContent = t.step_titles[i] || '';
+                const p = step.querySelector('p.text-text-secondary');
+                if (p) p.textContent = t.step_subtitles[i] || '';
+            });
+            // Step labels
+            for (let i = 1; i <= 4; i++) {
+                const stepLabel = document.getElementById('step-' + i);
+                if (stepLabel && t.step_labels[i-1]) stepLabel.setAttribute('aria-label', t.step_labels[i-1]);
+            }
+            const stepText = document.getElementById('current-step-text');
+            if(stepText && t.step_labels[currentStep-1]) stepText.textContent = t.step_labels[currentStep-1];
+            // Buttons
+            document.querySelectorAll('#next-step-1, #next-step-2, #next-step-3').forEach(e => { if(e) e.innerHTML = t.next + ' <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>'; });
+            document.querySelectorAll('#prev-step-2, #prev-step-3, #prev-step-4').forEach(e => { if(e) e.innerHTML = '<svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>' + t.prev; });
+            const nextStep3 = document.getElementById('next-step-3');
+            if(nextStep3) nextStep3.innerHTML = t.ver_resultados + ' <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>';
+            // Step 4 guardar
+            // Sidebar
+            const resumen = document.querySelector('h3.text-lg.font-semibold.text-primary.mb-4');
+            if(resumen) resumen.textContent = t.resumen;
+            const h4s = document.querySelectorAll('h4.font-medium.text-primary.mb-2');
+            if(h4s[0]) h4s[0].textContent = t.selected_appliances;
+            if(h4s[1]) h4s[1].textContent = t.consumo_estimado;
+            if(h4s[2]) h4s[2].textContent = t.factura_actual;
+            if(h4s[3]) h4s[3].textContent = t.potencial_solar;
+            const ahorro = document.querySelector('#solar-potential .text-xs.text-text-secondary');
+            if(ahorro) ahorro.textContent = t.ahorro_mensual;
+            // Consejos útiles
+            document.querySelectorAll('.card h3.text-lg.font-semibold.text-primary.mb-4').forEach(e => { if(e) e.textContent = t.consejos; });
+            const consejos = document.querySelectorAll('.card .flex.items-start.space-x-3');
+            if (consejos[0]) {
+                const p1 = consejos[0].querySelector('p.font-medium');
+                if(p1) p1.textContent = t.consejo1_t;
+                const p2 = consejos[0].querySelector('p.text-text-secondary');
+                if(p2) p2.textContent = t.consejo1_d;
+            }
+            if (consejos[1]) {
+                const p1 = consejos[1].querySelector('p.font-medium');
+                if(p1) p1.textContent = t.consejo2_t;
+                const p2 = consejos[1].querySelector('p.text-text-secondary');
+                if(p2) p2.textContent = t.consejo2_d;
+            }
+            // Proceso de instalación
+            const proc = document.querySelector('.bg-primary-50.rounded-lg.p-6.mb-8 h3');
+            if(proc) proc.textContent = t.proceso_instalacion;
+            const pasos = document.querySelectorAll('.bg-primary-50.rounded-lg.p-6.mb-8 .text-center');
+            t.pasos_instalacion.forEach((p, i) => {
+                if (pasos[i]) {
+                    const h4 = pasos[i].querySelector('h4');
+                    if(h4) h4.textContent = p[0];
+                    const ptxt = pasos[i].querySelector('p');
+                    if(ptxt) ptxt.textContent = p[1];
+                }
+            });
+            // Footer
+            const fbrand = document.querySelector('footer .text-2xl.font-bold');
+            if(fbrand) fbrand.textContent = t.footer_brand;
+            const fdesc = document.querySelector('footer .text-primary-200');
+            if(fdesc) fdesc.textContent = t.footer_desc;
+            const fong = document.querySelector('footer .text-sm.text-primary-300');
+            if(fong) fong.textContent = t.footer_ong;
+            const fright = document.querySelector('footer .border-t');
+            if(fright) fright.innerHTML = `<p>${t.footer_rights}</p>`;
+        }
+
+
+        document.getElementById('language-selector').addEventListener('change', function() {
+            currentLang = this.value;
+            localStorage.setItem('solar_lang', currentLang);
+            translatePage(currentLang);
+        });
+
+
+        // Traducir al cargar y mantener idioma entre páginas
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('solar_lang');
+            if (savedLang && translations[savedLang]) {
+                currentLang = savedLang;
+                document.getElementById('language-selector').value = currentLang;
+            }
+            translatePage(currentLang);
+        });
+
+        // NOTA: Para que el homepage también sea traducible y mantenga el idioma,
+        // copia el objeto 'translations', la función 'translatePage', y el código de localStorage
+        // al archivo homepage_interactive_solar_calculator_hub.html, y usa los mismos ids/clases.
+
+        // Step navigation functions
+        function showStep(step) {
+            // Hide all steps
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`step-${i}-content`).classList.add('hidden');
+                const stepIndicator = document.getElementById(`step-${i}`);
+                stepIndicator.classList.remove('bg-secondary', 'text-white');
+                stepIndicator.classList.add('bg-primary-200', 'text-primary');
+            }
+            // Show current step
+            document.getElementById(`step-${step}-content`).classList.remove('hidden');
+            const currentStepIndicator = document.getElementById(`step-${step}`);
+            currentStepIndicator.classList.remove('bg-primary-200', 'text-primary');
+            currentStepIndicator.classList.add('bg-secondary', 'text-white');
+            currentStep = step;
+            // Traducir después de mostrar el paso
+            if (typeof translatePage === 'function') translatePage(currentLang);
+        }
+
+        // Step 1: Appliance selection
+        const applianceCards = document.querySelectorAll('.appliance-card');
+        applianceCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const appliance = this.dataset.appliance;
+                const consumption = parseInt(this.dataset.consumption);
+                const checkbox = this.querySelector('.checkbox-visual');
+                const isSelected = this.classList.contains('selected');
+                
+                if (isSelected) {
+                    // Deselect
+                    this.classList.remove('selected', 'border-primary-500', 'bg-primary-50');
+                    this.classList.add('border-border');
+                    checkbox.classList.remove('bg-primary', 'border-primary');
+                    checkbox.classList.add('border-primary-300');
+                    checkbox.innerHTML = '';
+                    
+                    selectedAppliances = selectedAppliances.filter(item => item.name !== appliance);
+                } else {
+                    // Select
+                    this.classList.add('selected', 'border-primary-500', 'bg-primary-50');
+                    this.classList.remove('border-border');
+                    checkbox.classList.add('bg-primary', 'border-primary');
+                    checkbox.classList.remove('border-primary-300');
+                    checkbox.innerHTML = '<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+                    
+                    selectedAppliances.push({
+                        name: appliance,
+                        consumption: consumption,
+                        displayName: this.querySelector('h3').textContent
+                    });
+                }
+                
+                updateSummary();
+                updateStep1Button();
+            });
+        });
+
+        function updateStep1Button() {
+            const nextBtn = document.getElementById('next-step-1');
+            if (selectedAppliances.length > 0) {
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('disabled:opacity-50', 'disabled:cursor-not-allowed');
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.classList.add('disabled:opacity-50', 'disabled:cursor-not-allowed');
+            }
+        }
+
+        // Step 1 next button
+        document.getElementById('next-step-1').addEventListener('click', function() {
+            if (selectedAppliances.length > 0) {
+                showStep(2);
+            }
+        });
+
+        // Step 2: Usage patterns
+        const dayUsageRadios = document.querySelectorAll('input[name="day-usage"]');
+        const nightUsageRadios = document.querySelectorAll('input[name="night-usage"]');
+
+        function updateStep2Button() {
+            const nextBtn = document.getElementById('next-step-2');
+            const daySelected = document.querySelector('input[name="day-usage"]:checked');
+            const nightSelected = document.querySelector('input[name="night-usage"]:checked');
+            
+            if (daySelected && nightSelected) {
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('disabled:opacity-50', 'disabled:cursor-not-allowed');
+                
+                usagePatterns = {
+                    day: daySelected.value,
+                    night: nightSelected.value
+                };
+                updateSummary();
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.classList.add('disabled:opacity-50', 'disabled:cursor-not-allowed');
+            }
+        }
+
+        dayUsageRadios.forEach(radio => {
+            radio.addEventListener('change', updateStep2Button);
+        });
+
+        nightUsageRadios.forEach(radio => {
+            radio.addEventListener('change', updateStep2Button);
+        });
+
+        // Step 2 navigation
+        document.getElementById('prev-step-2').addEventListener('click', function() {
+            showStep(1);
+        });
+
+        document.getElementById('next-step-2').addEventListener('click', function() {
+            showStep(3);
+        });
+
+        // Step 3: Location and roof
+        const regionSelect = document.getElementById('region-select');
+        const roofTypeRadios = document.querySelectorAll('input[name="roof-type"]');
+        const roofSpaceRadios = document.querySelectorAll('input[name="roof-space"]');
+
+        function updateStep3Button() {
+            const nextBtn = document.getElementById('next-step-3');
+            const region = regionSelect.value;
+            const roofType = document.querySelector('input[name="roof-type"]:checked');
+            const roofSpace = document.querySelector('input[name="roof-space"]:checked');
+            
+            if (region && roofType && roofSpace) {
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('disabled:opacity-50', 'disabled:cursor-not-allowed');
+                
+                locationData = {
+                    region: region,
+                    roofType: roofType.value,
+                    roofSpace: roofSpace.value
+                };
+                updateSummary();
+            } else {
+                nextBtn.disabled = true;
+                nextBtn.classList.add('disabled:opacity-50', 'disabled:cursor-not-allowed');
+            }
+        }
+
+        regionSelect.addEventListener('change', updateStep3Button);
+        roofTypeRadios.forEach(radio => {
+            radio.addEventListener('change', updateStep3Button);
+        });
+        roofSpaceRadios.forEach(radio => {
+            radio.addEventListener('change', updateStep3Button);
+        });
+
+        // Step 3 navigation
+        document.getElementById('prev-step-3').addEventListener('click', function() {
+            showStep(2);
+        });
+
+        document.getElementById('next-step-3').addEventListener('click', function() {
+            calculateResults();
+            showStep(4);
+        });
+
+        // Step 4 navigation
+        document.getElementById('prev-step-4').addEventListener('click', function() {
+            showStep(3);
+        });
+
+        // Update summary sidebar
+        function updateSummary() {
+            const selectedAppliancesDiv = document.getElementById('selected-appliances');
+            const dailyConsumptionSpan = document.getElementById('daily-consumption');
+            const monthlyConsumptionSpan = document.getElementById('monthly-consumption');
+            const currentBillSpan = document.getElementById('current-bill');
+            const solarPotentialDiv = document.getElementById('solar-potential');
+            if (selectedAppliances.length === 0) {
+                selectedAppliancesDiv.innerHTML = '<p class="text-center text-text-secondary italic">Selecciona electrodomésticos para ver el resumen</p>';
+                dailyConsumptionSpan.textContent = '0 kWh';
+                monthlyConsumptionSpan.textContent = '0 kWh';
+                currentBillSpan.textContent = 'Q0';
+                solarPotentialDiv.classList.add('hidden');
+                if (typeof translatePage === 'function') translatePage(currentLang);
+                return;
+            }
+            // Display selected appliances
+            selectedAppliancesDiv.innerHTML = selectedAppliances.map(appliance => 
+                `<div class="flex justify-between items-center">
+                    <span>${appliance.displayName}</span>
+                    <span class="text-accent">${appliance.consumption}W</span>
+                </div>`
+            ).join('');
+            // Calculate consumption
+            let dailyConsumption = 0;
+            selectedAppliances.forEach(appliance => {
+                let hours = 8; // Default hours per day
+                if (appliance.name === 'refrigerator') hours = 24;
+                if (appliance.name === 'lights') hours = 6;
+                if (appliance.name === 'washing') hours = 1;
+                dailyConsumption += (appliance.consumption * hours) / 1000; // Convert to kWh
+            });
+            // Apply usage patterns multiplier
+            if (usagePatterns.day && usagePatterns.night) {
+                let multiplier = 1;
+                if (usagePatterns.day === 'heavy' || usagePatterns.night === 'heavy') multiplier = 1.3;
+                else if (usagePatterns.day === 'moderate' || usagePatterns.night === 'moderate') multiplier = 1.1;
+                dailyConsumption *= multiplier;
+            }
+            const monthlyConsumption = dailyConsumption * 30;
+            const currentBill = monthlyConsumption * 1.2; // Q1.2 per kWh average in Guatemala
+            dailyConsumptionSpan.textContent = `${dailyConsumption.toFixed(1)} kWh`;
+            monthlyConsumptionSpan.textContent = `${monthlyConsumption.toFixed(0)} kWh`;
+            currentBillSpan.textContent = `Q${currentBill.toFixed(0)}`;
+            // Show solar potential if we have location data
+            if (locationData.region) {
+                const potentialSavings = currentBill * 0.8; // 80% savings potential
+                document.getElementById('potential-savings').textContent = `Q${potentialSavings.toFixed(0)}`;
+                solarPotentialDiv.classList.remove('hidden');
+            }
+            if (typeof translatePage === 'function') translatePage(currentLang);
+        }
+
+        // Calculate final results
+        function calculateResults() {
+            const totalConsumption = selectedAppliances.reduce((total, appliance) => {
+                let hours = 8;
+                if (appliance.name === 'refrigerator') hours = 24;
+                if (appliance.name === 'lights') hours = 6;
+                if (appliance.name === 'washing') hours = 1;
+                return total + (appliance.consumption * hours);
+            }, 0) / 1000; // Convert to kWh
+            // Apply usage pattern multiplier
+            let multiplier = 1;
+            if (usagePatterns.day === 'heavy' || usagePatterns.night === 'heavy') multiplier = 1.3;
+            else if (usagePatterns.day === 'moderate' || usagePatterns.night === 'moderate') multiplier = 1.1;
+            const dailyConsumption = totalConsumption * multiplier;
+            const monthlyConsumption = dailyConsumption * 30;
+            // Regional solar factors
+            const solarFactors = {
+                'guatemala': 1.0,
+                'quetzaltenango': 0.9,
+                'huehuetenango': 0.85,
+                'alta-verapaz': 0.8,
+                'peten': 0.95,
+                'izabal': 0.9,
+                'other': 0.85
+            };
+            const solarFactor = solarFactors[locationData.region] || 0.85;
+            // Calculate system sizes
+            const basicSystem = {
+                panels: Math.max(4, Math.ceil(dailyConsumption * 0.6 / 0.5)), // 0.5kW per panel
+                power: Math.max(2, Math.ceil(dailyConsumption * 0.6 / 0.5) * 0.5),
+                cost: Math.max(15000, Math.ceil(dailyConsumption * 0.6 / 0.5) * 3750),
+                savings: Math.floor(monthlyConsumption * 1.2 * 0.6)
+            };
+            const comfortSystem = {
+                panels: Math.max(6, Math.ceil(dailyConsumption / 0.5)),
+                power: Math.max(3, Math.ceil(dailyConsumption / 0.5) * 0.5),
+                cost: Math.max(25000, Math.ceil(dailyConsumption / 0.5) * 3500),
+                savings: Math.floor(monthlyConsumption * 1.2 * 0.85)
+            };
+            const communitySystem = {
+                panels: Math.max(12, Math.ceil(dailyConsumption * 1.5 / 0.5)),
+                power: Math.max(6, Math.ceil(dailyConsumption * 1.5 / 0.5) * 0.5),
+                cost: Math.max(45000, Math.ceil(dailyConsumption * 1.5 / 0.5) * 3250),
+                savings: Math.floor(monthlyConsumption * 1.2 * 1.2)
+            };
+            // Update results display
+            function safeSet(id, value) {
+                const el = document.getElementById(id);
+                if (el) el.textContent = value;
+            }
+            safeSet('basic-panels', `${basicSystem.panels} paneles`);
+            safeSet('basic-power', `${basicSystem.power} kW`);
+            safeSet('basic-cost', `Q${basicSystem.cost.toLocaleString()}`);
+            safeSet('basic-savings', `Q${basicSystem.savings}`);
+            safeSet('comfort-panels', `${comfortSystem.panels} paneles`);
+            safeSet('comfort-power', `${comfortSystem.power} kW`);
+            safeSet('comfort-cost', `Q${comfortSystem.cost.toLocaleString()}`);
+            safeSet('comfort-savings', `Q${comfortSystem.savings}`);
+            safeSet('community-panels', `${communitySystem.panels} paneles`);
+            safeSet('community-power', `${communitySystem.power} kW`);
+            safeSet('community-cost', `Q${communitySystem.cost.toLocaleString()}`);
+            safeSet('community-savings', `Q${communitySystem.savings}`);
+            calculationResults = {
+                basic: basicSystem,
+                comfort: comfortSystem,
+                community: communitySystem,
+                consumption: {
+                    daily: dailyConsumption,
+                    monthly: monthlyConsumption
+                },
+                appliances: selectedAppliances,
+                usage: usagePatterns,
+                location: locationData
+            };
+            if (typeof translatePage === 'function') translatePage(currentLang);
+        }
+
+        // System selection
+        function selectSystem(systemType) {
+            alert(`Has seleccionado el Sistema ${systemType.charAt(0).toUpperCase() + systemType.slice(1)}. En la versión completa, esto te llevaría al proceso de cotización detallada.`);
+        }
+
+
+        // Initialize the calculator
+        document.addEventListener('DOMContentLoaded', function() {
+            showStep(1);
+            updateSummary();
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
